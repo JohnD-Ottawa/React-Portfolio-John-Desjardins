@@ -1,0 +1,114 @@
+:root {
+  --bg-main-color: #01579b;
+  --bg-dark-grey: #1c1c1c;
+  --bg-med-grey: #282828;
+  --bg-light-grey: #424242;
+  --muted-grey: #9e9e9e;
+  --alt-highlight: #fbc02d;
+  --border-white: 1px solid #fff;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-dark-grey);
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.App {
+  height: 100vh;
+  border: var(--border-white);
+}
+.App-TopNav {
+  height: 48px;
+  width: 100%;
+  background-color: var(--bg-main-color);
+  color: #fff;
+  padding: 8px 16px;
+  margin: 0;
+  border: var(--border-white);
+}
+.App-Content {
+  padding-top: 47px;
+  height: calc(100vh - 2px);
+}
+.App-SideDrawer {
+  width: 240px;
+  min-width: 240px;
+  background-color: var(--bg-med-grey);
+  border-right: var(--border-white);
+}
+.App-TopNav-Home {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+.SideDrawer-Control {
+  cursor: pointer;
+}
+.App-drawer-content {
+  height: calc(100% - 48px - 28px);
+  /* padding: 4px 0px; */
+  overflow: hidden;
+  overflow-y: auto;
+}
+.App-drawer-search {
+  background-color: var(--bg-med-grey);
+}
+.lots-of-content {
+  height: 200vh;
+}
+.app-drawer-input-prepend {
+  background-color: var(--bg-dark-grey);
+  color: white;
+  border: var(--border-white);
+  color: var(--muted-grey);
+}
+.app-drawer-input,
+.app-drawer-input:focus {
+  background-color: var(--bg-dark-grey);
+  color: white;
+  border: var(--border-white);
+  border-left: none;
+  box-shadow: none;
+  padding-left: 0px !important;
+}
+
+.app-drawer-input::placeholder {
+  color: var(--muted-grey);
+}
+.App-SideDrawer-contentHeader {
+  height: 28px;
+  color: white;
+  background-color: var(--bg-med-grey);
+  padding: 0px 8px;
+}
+.w-media-img {
+  width: 30px;
+}
+.w-media-body {
+  width: calc(100% - 20px);
+  font-size: 13px;
+}
+.w-media-drawer {
+  padding: 0px 8px;
+  height: 28px;
+}
+.w-media-drawer:hover {
+  border-right: solid var(--muted-grey) 4px;
+}
+.w-media-drawer.active {
+  background-color: var(--bg-light-grey);
+}
+.oa {
+  overflow: auto;
+}
