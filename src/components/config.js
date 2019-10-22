@@ -1,3 +1,3 @@
-import weather from "./app_001/app";
+import app_001 from "./app_001/app";
 
-export default [weather];
+export default [app_001];

@@ -14,7 +14,7 @@ class Application extends Component {
 export default {
   id: "app_001",
   icon: "fas fa-palette",
-  title: "Placeholder Application",
+  title: "Placeholder Application with a very long title",
   description: "No description available.",
   application: Application
 };
