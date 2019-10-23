@@ -7,7 +7,7 @@ class Application extends Component {
     this.state = {};
   }
   render() {
-    return <div className="app">This is a Home Page</div>;
+    return <div className="app p-2">This is a Home Page</div>;
   }
 }
 

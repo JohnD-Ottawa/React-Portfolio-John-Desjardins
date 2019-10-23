@@ -103,11 +103,11 @@ code {
   padding: 0px 8px;
   height: 28px;
 }
-.w-media-drawer:hover {
-  border-right: solid var(--muted-grey) 4px;
-}
 .w-media-drawer.active {
   background-color: var(--bg-light-grey);
+}
+.w-media-drawer:hover {
+  background-color: var(--muted-grey);
 }
 .oa {
   overflow: auto;

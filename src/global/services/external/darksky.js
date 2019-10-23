@@ -20,8 +20,35 @@ export function getForecast(props) {
   } else {
     props.changeState({
       code: 0,
-      msg:
+      error:
         "Object must have the following properties : { latitude, longitude, callback }"
     });
+  }
+}
+
+export function getIcon(icon) {
+  switch (icon) {
+    case "clear-day":
+      return "fas fa-sun";
+    case "clear-night":
+      return "fas fa-moon";
+    case "rain":
+      return "fas fa-cloud-rain";
+    case "snow":
+      return "fas fa-snowflake";
+    case "sleet":
+      return "fas fa-cloud-meatball";
+    case "wind":
+      return "fas fa-wind";
+    case "fog":
+      return "fas fa-smog";
+    case "cloudy":
+      return "fas fa-cloud";
+    case "partly-cloudy-day":
+      return "fas fa-cloud-sun";
+    case "partly-cloudy-night":
+      return "fas fa-cloud-moon";
+    default:
+      return "fas fa-bolt";
   }
 }
