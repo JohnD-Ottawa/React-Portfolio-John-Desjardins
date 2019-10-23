@@ -1,18 +1,24 @@
-export class WebService {
-  fetchURL = url => {
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        return { code: 0, data: data };
-      })
-      .catch(function(error) {
-        return { code: 1, msg: error };
-      });
-  };
-  openURL = url => {
-    var win = window.open(url, "_blank");
-    win.focus();
-  };
+export function fetchURL(url, callback) {
+  fetch(url, {
+    headers: {
+      "Access-Control-Allow-Credentials": true,
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET",
+      "Access-Control-Allow-Headers": "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      callback({ code: 0, data: data });
+    })
+    .catch(function(error) {
+      callback({ code: 1, msg: error });
+    });
+}
+export function openURL(url) {
+  var win = window.open(url, "_blank");
+  win.focus();
 }
 
 // function readTextFile(file)
