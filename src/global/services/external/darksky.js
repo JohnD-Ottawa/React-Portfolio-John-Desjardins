@@ -9,19 +9,20 @@ export function getForecast(props) {
     props.hasOwnProperty("longitude") &&
     props.hasOwnProperty("callback")
   ) {
-    WebService(
-      `${PROXY}${URL}${props.latitude},${props.longitude}?exclude=${
-        props.hasOwnProperty("exclude") ? `${props.exclude}` : `[]`
-      },lang=${props.hasOwnProperty("lang") ? `${props.lang}` : `en`},units=${
-        props.hasOwnProperty("units") ? `${props.units}` : `ca`
-      }`,
-      props.callback
-    );
+    const NEW_URL = `${PROXY}${URL}${props.latitude},${
+      props.longitude
+    }?exclude=${
+      props.hasOwnProperty("exclude") ? `${props.exclude}` : `minutely`
+    }&lang=${props.hasOwnProperty("lang") ? `${props.lang}` : `en`}&units=${
+      props.hasOwnProperty("units") ? `${props.units}` : `ca`
+    }`;
+
+    WebService(NEW_URL, props.callback);
   } else {
-    props.changeState({
-      code: 0,
+    props.callback({
+      code: 13,
       error:
-        "Object must have the following properties : { latitude, longitude, callback }"
+        "Object Type Mismatch (Object must contain the following properties) : latitude, longitude, callback"
     });
   }
 }

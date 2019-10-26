@@ -13,6 +13,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      list: config,
       active: "app_HOME",
       language: "lang_EN",
       drawer: {
@@ -21,10 +22,7 @@ export default class App extends Component {
     };
   }
   changeState = new_state => {
-    const that = this;
-    return function(e) {
-      that.setState(new_state);
-    };
+    this.setState(new_state);
   };
   render() {
     return (
@@ -32,7 +30,8 @@ export default class App extends Component {
         <AppNavTop changeState={this.changeState} />
         <div className="d-flex flex-row App-Content align-items-stretch">
           <AppNavDrawerOpen
-            list={config}
+            list={this.state.list}
+            config_list={config}
             active={this.state.active}
             changeState={this.changeState}
           />

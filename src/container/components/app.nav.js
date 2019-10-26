@@ -7,9 +7,9 @@ export default function AppNavTop(props) {
     <nav className="App-TopNav navbar navbar-dark fixed-top d-flex align-items-center justify-content-between">
       <div
         class="media App-TopNav-Home w-media-topnav"
-        onClick={props.changeState({ active: HOME })}
+        onClick={e => props.changeState({ active: HOME })}
       >
-        <i className="fab fa-node-js fa-lg align-self-center" />
+        <i className="fab fa-react fa-lg align-self-center" />
         <div class="media-body">
           <h5 className="font-weight-bold m-0 p-0 pl-2">John Desjardins</h5>
         </div>
