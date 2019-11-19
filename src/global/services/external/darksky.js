@@ -1,8 +1,8 @@
 import { fetchURL as WebService } from "../web.services";
 
 export function getForecast(props) {
-  const URL =
-    "https://api.darksky.net/forecast/6f841ec6d407bef9a05c39982551ed48/";
+  const API_KEY = "6f841ec6d407bef9a05c39982551ed48";
+  const URL = `https://api.darksky.net/forecast/${API_KEY}/`;
   const PROXY = "https://cors-anywhere.herokuapp.com/";
   if (
     props.hasOwnProperty("latitude") &&
@@ -17,13 +17,16 @@ export function getForecast(props) {
       props.hasOwnProperty("units") ? `${props.units}` : `ca`
     }`;
 
-    WebService(NEW_URL, props.callback);
+    WebService(NEW_URL, props.callback, props.state);
   } else {
-    props.callback({
-      code: 13,
-      error:
-        "Object Type Mismatch (Object must contain the following properties) : latitude, longitude, callback"
-    });
+    props.callback(
+      {
+        code: 13,
+        error:
+          "Object Type Mismatch (Object must contain the following properties) : latitude, longitude, callback"
+      },
+      props.state
+    );
   }
 }
 

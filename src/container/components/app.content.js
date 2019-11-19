@@ -1,5 +1,5 @@
 import React from "react";
-import home from "../../components/app_HOME/app";
+import home from "../../components/applications_main-site/app_HOME/app";
 
 let Home = home.application;
 

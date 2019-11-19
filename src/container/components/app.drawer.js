@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import MediaIcons from "../../global/services/external/fontAwesome";
 
 export default class AppNavDrawerOpen extends React.Component {
   handleChange = (event, callback) => {
@@ -8,18 +10,14 @@ export default class AppNavDrawerOpen extends React.Component {
       )
     });
   };
-
   render() {
     return (
       <div className="App-SideDrawer align-self-stretch text-light">
         {/* Header */}
-        <nav class="App-SideDrawer-contentHeader navbar d-flex align-items-center justify-content-between">
-          <small className="font-italic font-weight-bold m-0 p-0">
+        <nav className="App-SideDrawer-contentHeader navbar d-flex align-items-center justify-content-between">
+          <small className="sidebar-header font-italic font-weight-bold m-0 p-0">
             Application Showcase
           </small>
-          <span>
-            <i class="SideDrawer-Control far fa-caret-square-left" />
-          </span>
         </nav>
         {/* Body */}
         <div className="App-drawer-content">
@@ -59,15 +57,17 @@ export default class AppNavDrawerOpen extends React.Component {
 function DrawerMediaItem(props) {
   return (
     <div
-      class={`media App-TopNav-Home w-100 w-media-drawer ${
+      className={`media App-TopNav-Home w-100 w-media-drawer ${
         props.active ? `active` : ``
       }`}
       onClick={e => props.onClick({ active: props.id })}
     >
-      <div className="w-media-img d-flex justify-content-center align-self-center">
-        <i className={`${props.icon} fa-fw`} />
+      <div
+        className={`w-media-img d-flex justify-content-center align-self-center`}
+      >
+        <FontAwesomeIcon icon={MediaIcons(props.icon)} />
       </div>
-      <div class="media-body d-flex align-items-center align-self-center w-media-body">
+      <div className="media-body d-flex align-items-center align-self-center w-media-body">
         <small className="font-weight-bold m-0 p-0 pl-3 text-truncate">
           {props.title}
         </small>

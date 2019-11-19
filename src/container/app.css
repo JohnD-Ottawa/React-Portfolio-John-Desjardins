@@ -104,11 +104,18 @@ code {
   height: 28px;
 }
 .w-media-drawer.active {
-  background-color: var(--bg-light-grey);
+  background-color: var(--bg-main-color);
+  pointer-events: none;
 }
 .w-media-drawer:hover {
-  background-color: var(--muted-grey);
+  background-color: var(--bg-light-grey);
 }
 .oa {
   overflow: auto;
+}
+.sidebar-header {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }

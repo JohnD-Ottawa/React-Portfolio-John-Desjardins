@@ -1,4 +1,4 @@
-export function fetchURL(url, callback) {
+export function fetchURL(url, callback, state) {
   fetch(url, {
     headers: {
       "Access-Control-Allow-Credentials": true,
@@ -9,10 +9,10 @@ export function fetchURL(url, callback) {
   })
     .then(res => res.json())
     .then(data => {
-      callback({ loading: false, code: 0, data: data });
+      callback({ loading: false, code: 0, data: data }, state);
     })
     .catch(function(error) {
-      callback({ loading: false, code: 1, error: error });
+      callback({ loading: false, code: 1, error: error }, state);
     });
 }
 export function openURL(url) {
