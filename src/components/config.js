@@ -1,15 +1,35 @@
-import RandomNumberGenerator from "./applications_showcase/app_001/app";
-import LocalWeatherForecast from "./applications_showcase/app_002/app";
-import HockeyScoresAndStandings from "./applications_showcase/app_003/app";
-import RandomUserContacts from "./applications_showcase/app_004/app";
-import RestaurantReviews from "./applications_showcase/app_005/app";
-import FilmDatabaseReviews from "./applications_showcase/app_006/app";
+import LocalWeatherForecast from "./applications_showcase/app_001/app";
 
-export default [
-  RandomNumberGenerator,
-  LocalWeatherForecast,
-  HockeyScoresAndStandings,
-  RandomUserContacts,
-  RestaurantReviews,
-  FilmDatabaseReviews
-];
+let APPLICATIONS = [LocalWeatherForecast];
+
+APPLICATIONS.forEach(item => (item.icon = MediaIcons(item.icon)));
+export default APPLICATIONS;
+
+function MediaIcons(icon) {
+  switch (icon) {
+    case "ICO_DEV":
+      return ["fab", "dev"];
+    case "ICO_WIDGET":
+      return ["far", "window-restore"];
+    case "ICO_TEMPLATE":
+      return ["fas", "stamp"];
+    case "ICO_DICE":
+      return ["fas", "dice"];
+    case "ICO_RANDOM":
+      return ["fas", "random"];
+    case "ICO_CLOUD":
+      return ["fas", "cloud"];
+    case "ICO_HOCKEY-PUCK":
+      return ["fas", "hockey-puck"];
+    case "ICO_ADDRESS-CARD":
+      return ["far", "address-card"];
+    case "ICO_YELP":
+      return ["fab", "yelp"];
+    case "ICO_FILM":
+      return ["fas", "film"];
+    case "ICO_PALETTE":
+      return ["fas", "palette"];
+    default:
+      return ["far", "question-circle"];
+  }
+}

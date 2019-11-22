@@ -111,7 +111,7 @@ code {
   background-color: var(--bg-light-grey);
 }
 .oa {
-  overflow: auto;
+  overflow-y: auto;
 }
 .sidebar-header {
   -webkit-user-select: none; /* Safari */

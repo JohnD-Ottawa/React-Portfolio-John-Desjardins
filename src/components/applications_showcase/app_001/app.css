@@ -1,0 +1,19 @@
+:root {
+  --bg-main-color: #01579b;
+  --bg-dark-grey: #1c1c1c;
+  --bg-med-grey: #282828;
+  --bg-light-grey: #424242;
+  --muted-grey: #9e9e9e;
+  --alt-highlight: #fbc02d;
+  --border-white: 1px solid #fff;
+}
+
+.app001 {
+  min-height: calc(100vh - 49px);
+}
+
+.jumbotron {
+  background-color: var(--bg-light-grey);
+  border: 1px white solid;
+  width: 80%;
+}

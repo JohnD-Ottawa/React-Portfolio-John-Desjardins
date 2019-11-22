@@ -1,6 +1,5 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import MediaIcons from "../../global/services/external/fontAwesome";
 
 export default class AppNavDrawerOpen extends React.Component {
   handleChange = (event, callback) => {
@@ -65,7 +64,7 @@ function DrawerMediaItem(props) {
       <div
         className={`w-media-img d-flex justify-content-center align-self-center`}
       >
-        <FontAwesomeIcon icon={MediaIcons(props.icon)} />
+        <FontAwesomeIcon icon={props.icon} />
       </div>
       <div className="media-body d-flex align-items-center align-self-center w-media-body">
         <small className="font-weight-bold m-0 p-0 pl-3 text-truncate">
