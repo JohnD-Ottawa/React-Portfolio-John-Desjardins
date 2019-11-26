@@ -2,7 +2,6 @@ import { fetchURL as WebService } from "../web.services";
 
 export default function getRandomUsers(props) {
   const URL = "https://randomuser.me/api/";
-
   const NEW_URL = `${URL}?${
     props.hasOwnProperty("nat") ? `&nat=${props.gender}` : `&nat=${"CA"}`
   }${props.hasOwnProperty("gender") ? `&gender=${props.gender}` : ``}${
@@ -16,8 +15,13 @@ export default function getRandomUsers(props) {
   }${props.hasOwnProperty("inc") ? `&inc=${props.inc}` : ``}${
     props.hasOwnProperty("exc") ? `&exc=${props.exc}` : ``
   }`;
-
-  console.log(NEW_URL);
-
-  WebService(NEW_URL, props.callback, props.state);
+  const result = await fetch(NEW_URL, { method: "get" })
+    .then(res => res.json())
+    .then(data => {
+      return { code: 0, data: data };
+    })
+    .catch(function(error) {
+      return { code: -1, error: error };
+    });
+  return result;
 }

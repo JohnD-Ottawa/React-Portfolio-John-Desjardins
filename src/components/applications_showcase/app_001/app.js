@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {} from "../../../global/services/external/ipapi";
 import $ from "jquery";
 
 import "./app.css";
@@ -8,68 +9,83 @@ import {
   getForecast as DarkSky,
   getIcon as DarkIcon
 } from "../../../global/services/external/darksky";
+import { getIPdata } from "../../../global/services/external/ipapi";
+
+const default_info = {
+  ip: "2607:fea8:c220:1120:5d00:9b36:1322:36b6",
+  city: "Ottawa",
+  region: "Ontario",
+  region_code: "ON",
+  country: "CA",
+  country_name: "Canada",
+  continent_code: "NA",
+  in_eu: false,
+  postal: "K2E",
+  latitude: 45.3438,
+  longitude: -75.7157,
+  timezone: "America/Toronto",
+  utc_offset: "-0500",
+  country_calling_code: "+1",
+  currency: "CAD",
+  languages: "en-CA,fr-CA,iu",
+  asn: "AS812",
+  org: "Rogers Communications Canada Inc."
+};
 
 class Application extends Component {
   constructor(props) {
     super(props);
     this.state = {
       forecast: {
-        loading: false
+        loading: true
       }
     };
   }
 
   componentDidMount() {
     console.log(`${app.title} has mounted successfully!`);
-    this.changeState({ loading: true }, "forecast");
-
-    // const oldCoords = localStorage.getItem('coords');
-    // if (oldCoords) {
-    //   showWeather(JSON.parse(oldCoords));
-    // }
-    // navigator.geolocation.getCurrentPosition(pos => {
-    //   const newCoords = JSON.stringify(pos.coords);
-    //   localStorage.setItem('coords', newCoords);
-    //   showWeather(newCoords);
-    // }, handleError);
-
-    var options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
-
-    if (navigator.geolocation) {
-      console.warn("Geolocation Retrieved, getting Forecast Data!");
-      navigator.geolocation.getCurrentPosition(
-        position =>
+    getIPdata().then(ipData => {
+      switch (ipData.code) {
+        // Success - Get Forecast w/ IP info
+        case 0:
           DarkSky({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-            callback: this.changeState,
-            state: "forecast"
-          }),
-        error => this.showError(error),
-        options
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    }
+            latitude: ipData.data.latitude,
+            longitude: ipData.data.longitude
+          }).then(forecast => {
+            this.setForecast(forecast, ipData);
+          });
+          break;
+        // Failure - Get Forecast w/ Default info
+        default:
+          DarkSky({
+            latitude: default_info.latitude,
+            longitude: default_info.longitude
+          }).then(forecast => {
+            this.setForecast(forecast, ipData);
+          });
+          break;
+      }
+    });
   }
 
-  showError = error => {
-    switch (error.code) {
-      case error.PERMISSION_DENIED:
-        console.error("User denied the request for Geolocation.");
+  setForecast = (forecast, ipData) => {
+    switch (forecast.code) {
+      // Success - Set State with Forecast Data
+      case 0:
+        this.changeState(
+          {
+            loading: false,
+            data: {
+              forecast: forecast.data,
+              ipData: ipData.data
+            }
+          },
+          "forecast"
+        );
         break;
-      case error.POSITION_UNAVAILABLE:
-        console.error("Location information is unavailable.");
-        break;
-      case error.TIMEOUT:
-        console.error("The request to get user location timed out.");
-        break;
-      case error.UNKNOWN_ERROR:
-        console.error("An unknown error occurred.");
+      // Failure - Set State with Error Msg
+      default:
+        this.changeState({ loading: false, error: forecast.error }, "forecast");
         break;
     }
   };
@@ -79,16 +95,15 @@ class Application extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <div className="app001 d-flex align-items-center justify-content-center">
         {this.state.forecast.loading ? (
           <FontAwesomeIcon icon="sync-alt" size="2x" spin />
-        ) : this.state.forecast.data ? (
-          <div className="p-2 w-100">
-            <p className="">{JSON.stringify(this.state.forecast.data)}</p>
-          </div>
+        ) : this.state.forecast.error ? (
+          <Jumbotron title="Error" />
         ) : (
-          <Jumbotron title="Error!" />
+          <Jumbotron title="Success" />
         )}
       </div>
     );
@@ -107,9 +122,6 @@ function Jumbotron(props) {
       <p>
         It uses utility classes for typography and spacing to space content out
         within the larger container.
-      </p>
-      <p class="btn btn-primary btn-lg" role="button">
-        Learn more
       </p>
     </div>
   );

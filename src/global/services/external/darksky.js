@@ -1,14 +1,8 @@
-import { fetchURL as WebService } from "../web.services";
-
-export function getForecast(props) {
+export async function getForecast(props) {
   const API_KEY = "6f841ec6d407bef9a05c39982551ed48";
   const URL = `https://api.darksky.net/forecast/${API_KEY}/`;
   const PROXY = "https://cors-anywhere.herokuapp.com/";
-  if (
-    props.hasOwnProperty("latitude") &&
-    props.hasOwnProperty("longitude") &&
-    props.hasOwnProperty("callback")
-  ) {
+  if (props.hasOwnProperty("latitude") && props.hasOwnProperty("longitude")) {
     const NEW_URL = `${PROXY}${URL}${props.latitude},${
       props.longitude
     }?exclude=${
@@ -16,17 +10,17 @@ export function getForecast(props) {
     }&lang=${props.hasOwnProperty("lang") ? `${props.lang}` : `en`}&units=${
       props.hasOwnProperty("units") ? `${props.units}` : `ca`
     }`;
-
-    WebService(NEW_URL, props.callback, props.state);
+    const result = await fetch(NEW_URL, { method: "get" })
+      .then(res => res.json())
+      .then(data => {
+        return { code: 0, data: data };
+      })
+      .catch(function(error) {
+        return { code: -1, error: error.msg };
+      });
+    return result;
   } else {
-    props.callback(
-      {
-        code: 13,
-        error:
-          "Object Type Mismatch (Object must contain the following properties) : latitude, longitude, callback"
-      },
-      props.state
-    );
+    return { code: 13, error: "Missing properties" };
   }
 }
 
