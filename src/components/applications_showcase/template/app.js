@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import $ from "jquery";
+import React, { Component } from 'react';
 
 class Application extends Component {
   constructor(props) {
@@ -13,15 +12,15 @@ class Application extends Component {
     this.setState({ [key]: new_state });
   };
   render() {
-    return <div className="template">This is a template</div>;
+    return <div className='template'>This is a template</div>;
   }
 }
 
 const app = {
-  id: "app_000",
-  icon: "ICO_DEV",
-  title: "Template Application",
-  description: "No description available.",
+  id: 'app_000',
+  icon: ['fas', 'stamp'],
+  title: 'Template Application',
+  description: 'No description available.',
   application: Application
 };
 

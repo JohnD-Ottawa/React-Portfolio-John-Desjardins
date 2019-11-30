@@ -1,35 +1,20 @@
-import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {} from "../../../global/services/external/ipapi";
-import $ from "jquery";
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import "./app.css";
+import './app.css';
 
-import {
-  getForecast as DarkSky,
-  getIcon as DarkIcon
-} from "../../../global/services/external/darksky";
-import { getIPdata } from "../../../global/services/external/ipapi";
+import { getForecast as DarkSky } from '../../../global/services/external/darksky';
+import { getIPdata } from '../../../global/services/external/ipapi';
 
 const default_info = {
-  ip: "2607:fea8:c220:1120:5d00:9b36:1322:36b6",
-  city: "Ottawa",
-  region: "Ontario",
-  region_code: "ON",
-  country: "CA",
-  country_name: "Canada",
-  continent_code: "NA",
-  in_eu: false,
-  postal: "K2E",
+  city: 'Ottawa',
+  region: 'Ontario',
+  region_code: 'ON',
+  country_name: 'Canada',
   latitude: 45.3438,
   longitude: -75.7157,
-  timezone: "America/Toronto",
-  utc_offset: "-0500",
-  country_calling_code: "+1",
-  currency: "CAD",
-  languages: "en-CA,fr-CA,iu",
-  asn: "AS812",
-  org: "Rogers Communications Canada Inc."
+  timezone: 'America/Toronto',
+  utc_offset: '-0500'
 };
 
 class Application extends Component {
@@ -80,12 +65,12 @@ class Application extends Component {
               ipData: ipData.data
             }
           },
-          "forecast"
+          'forecast'
         );
         break;
       // Failure - Set State with Error Msg
       default:
-        this.changeState({ loading: false, error: forecast.error }, "forecast");
+        this.changeState({ loading: false, error: forecast.error }, 'forecast');
         break;
     }
   };
@@ -97,13 +82,13 @@ class Application extends Component {
   render() {
     console.log(this.state);
     return (
-      <div className="app001 d-flex align-items-center justify-content-center">
+      <div className='app001 d-flex align-items-center justify-content-center'>
         {this.state.forecast.loading ? (
-          <FontAwesomeIcon icon="sync-alt" size="2x" spin />
-        ) : this.state.forecast.error ? (
-          <Jumbotron title="Error" />
+          <FontAwesomeIcon icon='sync-alt' size='2x' spin />
+        ) : this.state.forecast.data ? (
+          <Jumbotron title='Success' />
         ) : (
-          <Jumbotron title="Success" />
+          <Jumbotron title='Error' />
         )}
       </div>
     );
@@ -112,13 +97,13 @@ class Application extends Component {
 
 function Jumbotron(props) {
   return (
-    <div class="jumbotron m-0">
-      <h1 class="display-4">{props.title}</h1>
-      <p class="lead">
+    <div class='jumbotron m-0'>
+      <h1 class='display-4'>{props.title}</h1>
+      <p class='lead'>
         This is a simple hero unit, a simple jumbotron-style component for
         calling extra attention to featured content or information.
       </p>
-      <hr class="my-4 text-light" />
+      <hr class='my-4 text-light' />
       <p>
         It uses utility classes for typography and spacing to space content out
         within the larger container.
@@ -128,10 +113,10 @@ function Jumbotron(props) {
 }
 
 const app = {
-  id: "app_002",
-  icon: "ICO_CLOUD",
-  title: "Local Weather Forecast",
-  description: "No description available.",
+  id: 'app_002',
+  icon: ['fas', 'moon'],
+  title: 'Local Weather Forecast',
+  description: 'No description available.',
   application: Application
 };
 

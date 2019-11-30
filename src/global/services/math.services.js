@@ -1,7 +1,7 @@
 export function getRandomInclusive(min, max, dec = 0) {
   switch (dec) {
     case 0:
-      min = Math.ceil(min);
+      min = Math.floor(min);
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min + 1)) + min;
     default:

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import $ from "jquery";
 
 import AppNavTop from "./components/app.nav";
 import AppNavDrawerOpen from "./components/app.drawer";

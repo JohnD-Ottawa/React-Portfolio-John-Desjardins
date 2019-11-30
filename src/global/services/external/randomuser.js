@@ -1,6 +1,4 @@
-import { fetchURL as WebService } from "../web.services";
-
-export default function getRandomUsers(props) {
+export async function getRandomUsers(props) {
   const URL = "https://randomuser.me/api/";
   const NEW_URL = `${URL}?${
     props.hasOwnProperty("nat") ? `&nat=${props.gender}` : `&nat=${"CA"}`

@@ -6,7 +6,7 @@ export async function getForecast(props) {
     const NEW_URL = `${PROXY}${URL}${props.latitude},${
       props.longitude
     }?exclude=${
-      props.hasOwnProperty("exclude") ? `${props.exclude}` : `minutely`
+      props.hasOwnProperty("exclude") ? `${props.exclude}` : `minutely,hourly,currently`
     }&lang=${props.hasOwnProperty("lang") ? `${props.lang}` : `en`}&units=${
       props.hasOwnProperty("units") ? `${props.units}` : `ca`
     }`;

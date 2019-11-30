@@ -1,5 +1,5 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class AppNavDrawerOpen extends React.Component {
   handleChange = (event, callback) => {
@@ -11,15 +11,15 @@ export default class AppNavDrawerOpen extends React.Component {
   };
   render() {
     return (
-      <div className="App-SideDrawer align-self-stretch text-light">
+      <div className='App-SideDrawer align-self-stretch text-light'>
         {/* Header */}
-        <nav className="App-SideDrawer-contentHeader navbar d-flex align-items-center justify-content-between">
-          <small className="sidebar-header font-italic font-weight-bold m-0 p-0">
+        <nav className='App-SideDrawer-contentHeader navbar d-flex align-items-center justify-content-between'>
+          <small className='sidebar-header font-italic font-weight-bold m-0 p-0'>
             Application Showcase
           </small>
         </nav>
         {/* Body */}
-        <div className="App-drawer-content">
+        <div className='App-drawer-content'>
           {this.props.list.map((n, index) => (
             <DrawerMediaItem
               key={index}
@@ -33,17 +33,17 @@ export default class AppNavDrawerOpen extends React.Component {
           ))}
         </div>
         {/* Footer */}
-        <div className="App-drawer-search w-100 p-2">
-          <div class="input-group input-group-sm">
-            <div class="input-group-prepend">
-              <span class="input-group-text app-drawer-input-prepend">
-                <i class="fas fa-search" />
+        <div className='App-drawer-search w-100 p-2'>
+          <div class='input-group input-group-sm'>
+            <div class='input-group-prepend'>
+              <span class='input-group-text app-drawer-input-prepend'>
+                <i class='fas fa-search' />
               </span>
             </div>
             <input
-              type="text"
-              className="form-control app-drawer-input"
-              placeholder="Search"
+              type='text'
+              className='form-control app-drawer-input'
+              placeholder='Search'
               onChange={e => this.handleChange(e, this.props.changeState)}
             />
           </div>
@@ -64,10 +64,10 @@ function DrawerMediaItem(props) {
       <div
         className={`w-media-img d-flex justify-content-center align-self-center`}
       >
-        <FontAwesomeIcon icon={props.icon} />
+        <FontAwesomeIcon icon={props.icon} transform='shrink-6' mask='square' />
       </div>
-      <div className="media-body d-flex align-items-center align-self-center w-media-body">
-        <small className="font-weight-bold m-0 p-0 pl-3 text-truncate">
+      <div className='media-body d-flex align-items-center align-self-center w-media-body'>
+        <small className='font-weight-bold m-0 w-media-margin text-truncate'>
           {props.title}
         </small>
       </div>

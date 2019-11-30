@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+:root {
+  --header-text: 'Righteous', cursive;
+  --roboto-text: 'Roboto', sans-serif;
+}

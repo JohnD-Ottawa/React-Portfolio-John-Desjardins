@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import $ from "jquery";
 
 class Application extends Component {
   constructor(props) {
@@ -19,7 +18,7 @@ class Application extends Component {
 
 const app = {
   id: "app_HOME",
-  icon: "ICO_DEV",
+  icon: "ICO_HOME",
   title: "Home",
   description: "No description available.",
   application: Application
